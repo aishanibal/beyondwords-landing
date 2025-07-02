@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(32, 30%, 96%);
+  --foreground: hsl(0, 0%, 24%);
+  --muted: hsl(32, 15%, 92%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(32, 30%, 96%);
+  --popover-foreground: hsl(0, 0%, 24%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 24%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(316, 22%, 41%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(217, 33%, 34%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(348, 25%, 66%);
+  --accent-foreground: hsl(0, 0%, 24%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(0, 0%, 24%);
+  --radius: 0.5rem;
+  
+  /* Custom BeyondWords colors */
+  --cream: hsl(32, 30%, 96%);
+  --rose-primary: hsl(316, 22%, 41%);
+  --blue-secondary: hsl(217, 33%, 34%);
+  --rose-accent: hsl(348, 25%, 66%);
+  --text-dark: hsl(0, 0%, 24%);
+  --translucent-blue: hsla(217, 33%, 34%, 0.06);
+  --translucent-rose: hsla(348, 25%, 66%, 0.08);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(316, 22%, 41%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-general antialiased;
+    background-color: var(--cream);
+    color: var(--text-dark);
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Grandstander', Arial, sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'AR One Sans', Arial, sans-serif;
+  }
+  
+  .font-general {
+    font-family: 'Montserrat', Arial, sans-serif;
+  }
+  
+  .text-cream {
+    color: var(--cream);
+  }
+  
+  .text-rose-primary {
+    color: var(--rose-primary);
+  }
+  
+  .text-blue-secondary {
+    color: var(--blue-secondary);
+  }
+  
+  .text-rose-accent {
+    color: var(--rose-accent);
+  }
+  
+  .text-text-dark {
+    color: var(--text-dark);
+  }
+  
+  .bg-cream {
+    background-color: var(--cream);
+  }
+  
+  .bg-rose-primary {
+    background-color: var(--rose-primary);
+  }
+  
+  .bg-blue-secondary {
+    background-color: var(--blue-secondary);
+  }
+  
+  .bg-rose-accent {
+    background-color: var(--rose-accent);
+  }
+  
+  .bg-translucent-blue {
+    background-color: var(--translucent-blue);
+  }
+  
+  .bg-translucent-rose {
+    background-color: var(--translucent-rose);
+  }
+  
+  .border-rose-accent {
+    border-color: var(--rose-accent);
+  }
+  
+  .border-rose-primary {
+    border-color: var(--rose-primary);
+  }
+  
+  .border-blue-secondary {
+    border-color: var(--blue-secondary);
+  }
+  
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .gradient-overlay {
+    background: linear-gradient(135deg, var(--translucent-rose) 0%, var(--translucent-blue) 100%);
+  }
+}
