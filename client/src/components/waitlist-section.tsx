@@ -184,8 +184,8 @@ export default function WaitlistSection() {
                             {...field}
                             type="email"
                             placeholder="Enter your email address"
-                            className="w-full px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body placeholder-white/80 placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
-                            style={{ fontSize: '1.5rem' }}
+                            className="w-full px-4 md:px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body text-lg md:text-2xl placeholder-white/80 placeholder:text-xs md:placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
+                            style={{ fontSize: undefined }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -203,8 +203,8 @@ export default function WaitlistSection() {
                             {...field}
                             type="text"
                             placeholder="Enter your heritage language"
-                            className="w-full px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body placeholder-white/80 placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
-                            style={{ fontSize: '1.5rem' }}
+                            className="w-full px-4 md:px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body text-lg md:text-2xl placeholder-white/80 placeholder:text-xs md:placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
+                            style={{ fontSize: undefined }}
                           />
                         </FormControl>
                         <FormMessage />
