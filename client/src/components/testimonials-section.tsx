@@ -3,39 +3,63 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const testimonials = [
+const surveyResponses = [
   {
-    name: "Maria Rodriguez",
-    role: "Heritage Spanish Speaker",
-    content: "BeyondWords helped me reconnect with my abuela's stories. The AI understands the cultural context that makes our family narratives so special.",
+    name: " Bengali Heritage Speaker",
+    question: "What motivates you to speak your heritage language?",
+    content: "To keep my heritage alive. To communicate with my parents in public and in their native language. I want to be fluent for my own sake of being bilingual but not feeling fully confident in the second language. ",
     color: "rose-primary",
     bgColor: "bg-rose-primary/20",
     textColor: "text-rose-primary",
   },
   {
-    name: "James Chen",
-    role: "Second-Generation Chinese American",
-    content: "Finally, a platform that gets it. Creating content about my heritage used to feel overwhelming, but BeyondWords makes it natural and authentic.",
+    name: "Malayalam Heritage Speaker",
+    question: "What do you find helpful in a language tool?",
+    content: "Practicing conversations. With Malayalam, I just picked up the language and practiced by conversing. In Spanish class, we used to chat with people in Spanish Speaking countries and it forced me to think in the language which was good. ",
     color: "blue-secondary",
     bgColor: "bg-blue-secondary/20",
     textColor: "text-blue-secondary",
   },
   {
-    name: "Amara Okafor",
-    role: "Nigerian Heritage Content Creator",
-    content: "The community aspect is incredible. I've connected with other heritage speakers and learned so much about preserving our cultural narratives.",
+    name: "Tagalog Heritage Speaker",
+    question: "What motivates you to speak your heritage language?",
+    content: "Everytime I come to the Philippines, there's a clear disconnect due to the language barrier, so I try to really hold on to the current Filipino knowledge I have and build on it.",
     color: "rose-accent",
     bgColor: "bg-rose-accent/20",
     textColor: "text-rose-accent",
   },
+  {
+    name: "Thai Heritage Speaker",
+    question: "What do you find helpful in a language tool?",
+    content: "Being able to listen to my heritage language daily. Learning by someone who is proficient at the language. ",
+    color: "rose-primary",
+    bgColor: "bg-rose-primary/20",
+    textColor: "text-rose-primary",
+  },
+  {
+    name: "Bahamian Creole Heritage Speaker",
+    question: "What motivates you to speak your heritage language?",
+    content: "I am motivated by seeing my families' smiles when I understand how important their language is. It is very unique and impactful how it reaches people like a warm embrace. ",
+    color: "blue-secondary",
+    bgColor: "bg-blue-secondary/20",
+    textColor: "text-blue-secondary",
+  },
+  {
+    name: "Jamaican Patois Heritage Speaker",
+    question: "What motivates you to speak your heritage language?",
+    content: "I have mostly just absorbed from family and community since it is not very popular. There isn't really any other way to learn. ",
+    color: "rose-accent",
+    bgColor: "bg-rose-accent/20",
+    textColor: "text-rose-accent",
+  }
 ];
 
-export default function TestimonialsSection() {
+export default function SurveyResponsesSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+      setCurrentSlide((prev) => (prev + 1) % surveyResponses.length);
     }, 5000);
 
     return () => clearInterval(timer);
@@ -46,15 +70,15 @@ export default function TestimonialsSection() {
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    setCurrentSlide((prev) => (prev + 1) % surveyResponses.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentSlide((prev) => (prev - 1 + surveyResponses.length) % surveyResponses.length);
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-translucent-rose">
+    <section id="survey-responses" className="py-20 bg-translucent-rose">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
@@ -64,14 +88,12 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-rose-primary mb-4">
-            What Our Community Says
+            What Heritage Speakers Tell Us
           </h2>
-          <p className="text-xl font-body text-text-dark max-w-3xl mx-auto">
-            Real stories from heritage speakers who've transformed their content creation journey
-          </p>
+
         </motion.div>
         
-        <div className="max-w-4xl mx-auto relative">
+        <div className="max-w-6xl mx-auto relative">
           <div className="overflow-hidden rounded-2xl">
             <AnimatePresence mode="wait">
               <motion.div
@@ -84,21 +106,29 @@ export default function TestimonialsSection() {
               >
                 <div className="flex items-center mb-6">
                   <motion.div 
-                    className={`w-16 h-16 ${testimonials[currentSlide].bgColor} rounded-full flex items-center justify-center`}
+                    className={`w-16 h-16 ${surveyResponses[currentSlide].bgColor} rounded-full flex items-center justify-center`}
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <User className={`${testimonials[currentSlide].textColor} h-8 w-8`} />
+                    <User className={`${surveyResponses[currentSlide].textColor} h-8 w-8`} />
                   </motion.div>
                   <div className="ml-4">
-                    <h4 className={`font-heading font-semibold ${testimonials[currentSlide].textColor} text-lg`}>
-                      {testimonials[currentSlide].name}
+                    <h4 className={`font-heading font-semibold ${surveyResponses[currentSlide].textColor} text-lg`}>
+                      {surveyResponses[currentSlide].name}
                     </h4>
                     <p className="text-text-dark font-body">
-                      {testimonials[currentSlide].role}
                     </p>
                   </div>
                 </div>
+                
+                <motion.p 
+                  className="text-base font-heading text-rose-accent mb-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                  {surveyResponses[currentSlide].question}
+                </motion.p>
                 
                 <motion.p 
                   className="text-lg font-body text-text-dark italic mb-6 leading-relaxed"
@@ -106,26 +136,8 @@ export default function TestimonialsSection() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  "{testimonials[currentSlide].content}"
+                  "{surveyResponses[currentSlide].content}"
                 </motion.p>
-                
-                <motion.div 
-                  className="flex text-rose-accent"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <motion.div
-                      key={star}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.4 + star * 0.1 }}
-                    >
-                      <Star className="h-5 w-5 fill-current" />
-                    </motion.div>
-                  ))}
-                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -155,7 +167,7 @@ export default function TestimonialsSection() {
           
           {/* Dots Indicator */}
           <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
+            {surveyResponses.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => goToSlide(index)}

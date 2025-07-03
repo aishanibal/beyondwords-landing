@@ -4,55 +4,55 @@ import {
   Users, 
   Edit, 
   Globe, 
-  TrendingUp, 
-  Shield 
+  TrendingUp,
+  Book
 } from "lucide-react";
 
 const features = [
   {
     icon: Languages,
     title: "Cultural Context AI",
-    description: "AI that understands cultural nuances and heritage language patterns to create authentic, meaningful content.",
+    description: "AI that understands cultural nuances and heritage language patterns.",
     color: "rose-primary",
     bgColor: "bg-rose-primary/20",
     textColor: "text-rose-primary",
   },
   {
     icon: Users,
-    title: "Community Connection",
-    description: "Connect with fellow heritage speakers and share your cultural stories within a supportive community.",
+    title: "Conversational Practice",
+    description: "Chat naturally with AI to build fluency judgement-free.",
     color: "blue-secondary",
     bgColor: "bg-blue-secondary/20",
     textColor: "text-blue-secondary",
   },
   {
     icon: Edit,
-    title: "Smart Content Editor",
-    description: "Advanced editing tools that help you refine and perfect your content while maintaining authenticity.",
+    title: "Detailed Feedback",
+    description: "Personalized feedback on grammar, pronunciation, and cultural context.",
     color: "rose-accent",
     bgColor: "bg-rose-accent/20",
     textColor: "text-rose-accent",
   },
   {
     icon: Globe,
-    title: "Multi-Language Support",
-    description: "Create content in multiple languages while preserving cultural authenticity and linguistic accuracy.",
+    title: "On-the-Go Learning",
+    description: "Easily integrate your language into your daily life.",
     color: "rose-primary",
     bgColor: "bg-rose-primary/20",
     textColor: "text-rose-primary",
   },
   {
     icon: TrendingUp,
-    title: "Analytics & Insights",
-    description: "Track your content performance and gain insights into how your cultural stories resonate with audiences.",
+    title: "Progress Tracking",
+    description: "Track your progress and see how your fluency improves over time.",
     color: "blue-secondary",
     bgColor: "bg-blue-secondary/20",
     textColor: "text-blue-secondary",
   },
   {
-    icon: Shield,
-    title: "Privacy & Security",
-    description: "Your cultural stories are precious. We ensure they're protected with enterprise-grade security measures.",
+    icon: Book,
+    title: "Personalized Review ",
+    description: "Tracks your toughest words and delivers targeted drills to reinforce retention.",
     color: "rose-accent",
     bgColor: "bg-rose-accent/20",
     textColor: "text-rose-accent",
@@ -71,14 +71,14 @@ export default function FeaturesSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-rose-primary mb-4">
-            Powerful Features for Every Creator
+            Powerful Features for Every Learner
           </h2>
           <p className="text-xl font-body text-text-dark max-w-3xl mx-auto">
-            Discover how BeyondWords empowers heritage speakers and diaspora communities to create meaningful content
+            Discover how BeyondWords empowers heritage speakers and diaspora communities to learn their language
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center place-items-center">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
@@ -99,7 +99,8 @@ export default function FeaturesSection() {
                 viewport={{ once: true }}
               >
                 <motion.div 
-                  className={`w-16 h-16 ${feature.bgColor} rounded-xl flex items-center justify-center mb-6`}
+                  className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${feature.color !== 'rose-accent' ? feature.bgColor : ''}`}
+                  style={feature.color === 'rose-accent' ? { backgroundColor: 'rgba(198, 123, 161, 0.2)' } : undefined}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.3 }}
                 >

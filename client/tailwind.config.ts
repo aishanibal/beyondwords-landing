@@ -61,6 +61,8 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        'rose-primary': 'hsl(316, 22%, 41%)',
+        'blue-secondary': 'hsl(217, 33%, 34%)',
       },
       keyframes: {
         "accordion-down": {

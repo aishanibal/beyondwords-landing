@@ -1,0 +1,5 @@
+/* Custom placeholder style for waitlist-section inputs */
+.custom-placeholder-white::placeholder {
+  color: #fff !important;
+  opacity: 1 !important;
+} 

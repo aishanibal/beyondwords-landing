@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Heart, Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const footerLinks = {
   product: [
@@ -31,7 +32,8 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-blue-secondary text-white py-16">
+    <footer id="contact" className="bg-blue-secondary text-white py-16" 
+    style={{ background: 'hsl(217, 51.20%, 16.90%)'}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <motion.div
@@ -42,12 +44,12 @@ export default function Footer() {
           >
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 bg-rose-primary/20 rounded-lg flex items-center justify-center">
-                <span className="text-rose-accent font-heading font-bold">BW</span>
+                <img src={logo} alt="BeyondWords Logo" className="h-16 w-16 object-contain" />
               </div>
               <span className="ml-2 text-lg font-heading font-semibold">BeyondWords</span>
             </div>
             <p className="text-white/70 font-body leading-relaxed">
-              Empowering heritage speakers and diaspora communities through AI-powered content creation.
+              Empowering heritage speakers and diaspora communities.
             </p>
             <motion.div 
               className="flex items-center mt-4 text-rose-accent"
@@ -81,7 +83,8 @@ export default function Footer() {
                     transition={{ duration: 0.2 }}
                   >
                     <a
-                      href={link.href}
+                      href="#"
+                      onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                       className="text-white/70 hover:text-white transition-colors font-body"
                     >
                       {link.name}
@@ -110,8 +113,8 @@ export default function Footer() {
               return (
                 <motion.a
                   key={social.label}
-                  href={social.href}
-                  target="_blank"
+                  href="#"
+                  onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-white transition-colors"
                   initial={{ opacity: 0, scale: 0 }}

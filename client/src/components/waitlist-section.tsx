@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { supabase } from "@/lib/supabase";
 import { z } from "zod";
+import './waitlist-section.css';
 
 // Define the schema directly since we don't need the shared schema anymore
 const insertWaitlistEmailSchema = z.object({
@@ -62,23 +63,34 @@ export default function WaitlistSection() {
 
   const waitlistMutation = useMutation({
     mutationFn: async (data: InsertWaitlistEmail) => {
-      const { data: result, error } = await supabase
-        .from('waitlist_emails')
-        .insert({
-          email: data.email,
-          heritage_language: data.heritageLanguage || null,
-        })
-        .select()
-        .single();
+      console.log('Submitting to Supabase:', data);
       
-      if (error) {
-        if (error.code === '23505') { // Unique constraint violation
-          throw new Error('This email is already on the waitlist!');
+      try {
+        const { data: result, error } = await supabase
+          .from('waitlist_emails')
+          .insert({
+            email: data.email,
+            heritage_language: data.heritageLanguage || null,
+          })
+          .select()
+          .single();
+        
+        console.log('Supabase response:', { result, error });
+        
+        if (error) {
+          console.error('Supabase error:', error);
+          if (error.code === '23505') { // Unique constraint violation
+            throw new Error('This email is already on the waitlist!');
+          }
+          throw new Error(`Supabase error: ${error.message} (Code: ${error.code})`);
         }
-        throw new Error(error.message);
+        
+        console.log('Success:', result);
+        return result;
+      } catch (err) {
+        console.error('Mutation error:', err);
+        throw err;
       }
-      
-      return result;
     },
     onSuccess: () => {
       setIsSubmitted(true);
@@ -103,19 +115,23 @@ export default function WaitlistSection() {
   };
 
   return (
-    <section id="waitlist" className="py-20 bg-gradient-to-br from-rose-primary to-blue-secondary text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section
+      id="waitlist"
+      className="py-32 text-white"
+      style={{ background: 'linear-gradient(135deg, hsl(316, 22%, 41%) 0%, hsl(217, 33%, 34%) 100%)' , boxShadow: '0 0 10px 0 rgba(10,10,10,10)'}}
+    >
+      <div className="max-w-5xl mx-auto px-6 sm:px-12 lg:px-20 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Join the BeyondWords Community
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">
+            Speak Beyond Words
           </h2>
           <p className="text-xl font-body mb-8 opacity-90">
-            Be among the first to experience AI-powered content creation designed for heritage speakers
+            Be among the first to experience conversational AI designed for heritage speakers
           </p>
           
           {waitlistCount && (
@@ -168,7 +184,8 @@ export default function WaitlistSection() {
                             {...field}
                             type="email"
                             placeholder="Enter your email address"
-                            className="w-full px-6 py-4 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 font-body text-lg focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
+                            className="w-full px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body placeholder-white/80 placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
+                            style={{ fontSize: '1.5rem' }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -182,18 +199,13 @@ export default function WaitlistSection() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value}>
-                            <SelectTrigger className="w-full px-6 py-4 rounded-lg bg-white/20 border border-white/30 text-white font-body text-lg focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all">
-                              <SelectValue placeholder="Select your heritage language" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {heritageLanguages.map((language) => (
-                                <SelectItem key={language.value} value={language.value}>
-                                  {language.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <Input
+                            {...field}
+                            type="text"
+                            placeholder="Enter your heritage language"
+                            className="w-full px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body placeholder-white/80 placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
+                            style={{ fontSize: '1.5rem' }}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -229,7 +241,7 @@ export default function WaitlistSection() {
                 Want to share more about your heritage language journey?
               </p>
               <motion.a
-                href="https://forms.gle/example-survey-link"
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=RncIw6pRT0-Po3Vc1N8ikyownBfAaZ5Gk1xJwTt1Ik1UNVNGUllUMFJWNlBQRFVCQlJHSFZZUzZNWi4u"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-white hover:text-white/80 transition-colors font-medium"

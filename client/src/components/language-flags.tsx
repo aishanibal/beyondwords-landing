@@ -26,28 +26,32 @@ export default function LanguageFlags() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-heading font-semibold text-rose-primary mb-2">
+          <h3 className="text-4xl font-heading font-semibold text-rose-primary mb-2">
             Supporting Heritage Languages Worldwide
           </h3>
-          <p className="text-text-dark font-body">
-            Connect with your cultural roots through AI-powered content creation
-          </p>
+          
         </motion.div>
         
         <motion.div 
-          className="flex flex-wrap justify-center items-center gap-8"
+          className="flex flex-wrap justify-center items-center gap-8 box "
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          whileHover={{ y: -12, boxShadow: '0 8px 40px 0 rgba(80,80,120,0.18)' }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          style={{
+            boxShadow: '0 0 10px 0 rgb(206, 204, 204)',
+            borderRadius: '2rem',
+            padding: '1rem',
+          }}
         >
           {languages.map((language, index) => (
             <motion.div
               key={language.name}
-              className="text-4xl cursor-pointer"
+              className="text-5xl cursor-pointer"
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileHover={{ scale: 1.25, rotate: 8, boxShadow: '0 4px 24px 0 rgba(80,80,120,0.18)' }}
               transition={{ 
                 duration: 0.3,
                 delay: index * 0.1,

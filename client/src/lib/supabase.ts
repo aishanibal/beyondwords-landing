@@ -1,11 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Temporarily hardcode for testing - REMOVE THESE BEFORE PRODUCTION
-const supabaseUrl = 'https://riisdbkiwmzgbohgsxoo.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpaXNkYmtpd216Z2JvaGdzeG9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5NjQ3MTcsImV4cCI6MjA2NjU0MDcxN30.QELPe8JWacG68Uvl1z6bzvKDzRWNza1AoPYuPjQ9M64'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 console.log('Supabase URL:', supabaseUrl)
 console.log('Supabase Key exists:', !!supabaseAnonKey)
+console.log('All env vars:', import.meta.env)
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error(`Missing Supabase environment variables - URL: ${supabaseUrl}, Key: ${!!supabaseAnonKey}`)

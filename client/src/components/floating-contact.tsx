@@ -84,15 +84,21 @@ export default function FloatingContact() {
                         Join Waitlist
                       </Button>
                       
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={scrollToContact}
-                        className="w-full justify-start text-text-dark hover:text-rose-primary hover:bg-rose-primary/10"
+                      <a
+                        href="mailto:aishani.bal5@gmail.com"
+                        className="block w-full"
+                        tabIndex={-1}
                       >
-                        <Phone className="mr-2 h-4 w-4" />
-                        Contact Us
-                      </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="w-full justify-start text-text-dark hover:text-rose-primary hover:bg-rose-primary/10"
+                          tabIndex={0}
+                        >
+                          <Phone className="mr-2 h-4 w-4" />
+                          Contact Us
+                        </Button>
+                      </a>
                     </div>
                   </CardContent>
                 </Card>
