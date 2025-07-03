@@ -9,8 +9,17 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest, queryClient } from "@/lib/queryClient";
-import { insertWaitlistEmailSchema, type InsertWaitlistEmail } from "@shared/schema";
+import { queryClient } from "@/lib/queryClient";
+import { supabase } from "@/lib/supabase";
+import { z } from "zod";
+
+// Define the schema directly since we don't need the shared schema anymore
+const insertWaitlistEmailSchema = z.object({
+  email: z.string().email(),
+  heritageLanguage: z.string().optional(),
+});
+
+type InsertWaitlistEmail = z.infer<typeof insertWaitlistEmailSchema>;
 
 const heritageLanguages = [
   { value: "spanish", label: "Spanish" },
@@ -40,13 +49,36 @@ export default function WaitlistSection() {
   });
 
   const { data: waitlistCount } = useQuery({
-    queryKey: ["/api/waitlist/count"],
+    queryKey: ["waitlist-count"],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from('waitlist_emails')
+        .select('*', { count: 'exact', head: true });
+      
+      if (error) throw error;
+      return { count: count || 0 };
+    },
   });
 
   const waitlistMutation = useMutation({
     mutationFn: async (data: InsertWaitlistEmail) => {
-      const response = await apiRequest("POST", "/api/waitlist", data);
-      return response.json();
+      const { data: result, error } = await supabase
+        .from('waitlist_emails')
+        .insert({
+          email: data.email,
+          heritage_language: data.heritageLanguage || null,
+        })
+        .select()
+        .single();
+      
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          throw new Error('This email is already on the waitlist!');
+        }
+        throw new Error(error.message);
+      }
+      
+      return result;
     },
     onSuccess: () => {
       setIsSubmitted(true);
@@ -55,7 +87,7 @@ export default function WaitlistSection() {
         title: "Welcome to the waitlist!",
         description: "We'll notify you as soon as BeyondWords is ready for early access.",
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/waitlist/count"] });
+      queryClient.invalidateQueries({ queryKey: ["waitlist-count"] });
     },
     onError: (error: Error) => {
       toast({
