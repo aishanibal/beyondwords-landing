@@ -183,7 +183,7 @@ export default function WaitlistSection() {
                           <Input
                             {...field}
                             type="email"
-                            placeholder="Enter your email address"
+                            placeholder="Email address"
                             className="w-full px-4 md:px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body text-lg md:text-2xl placeholder-white/80 placeholder:text-xs md:placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
                             style={{ fontSize: undefined }}
                           />
@@ -202,7 +202,7 @@ export default function WaitlistSection() {
                           <Input
                             {...field}
                             type="text"
-                            placeholder="Enter your heritage language"
+                            placeholder="Heritage Language"
                             className="w-full px-4 md:px-8 py-6 rounded-xl bg-white/20 border border-white/30 text-white font-body text-lg md:text-2xl placeholder-white/80 placeholder:text-xs md:placeholder:text-2xl focus:outline-none focus:border-white/50 focus:bg-white/30 transition-all"
                             style={{ fontSize: undefined }}
                           />
