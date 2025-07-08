@@ -153,3 +153,8 @@
     background: linear-gradient(135deg, var(--translucent-rose) 0%, var(--translucent-blue) 100%);
   }
 }
+
+input::placeholder {
+  color: #dedede !important;
+  opacity: 1 !important;
+}
